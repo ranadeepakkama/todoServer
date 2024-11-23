@@ -10,8 +10,8 @@ const app = express();
 app.use(express.json());
 
 // Database setup
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/todoDB'; // Replace with your MongoDB connection string
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+const MONGO_URI = process.env.MONGO_URI || 4040 ; 
+mongoose.connect(MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Error connecting to MongoDB:', err.message));
 
