@@ -114,10 +114,9 @@ app.get('/userDetails', async (req, res) => {
 });
 
 // Add a new todo
-app.post('/todoPost/:userId', async (req, res) => {
+app.post('/todoPost/:userId',authenticateToken, async (req, res) => {
     const { task, status } = req.body;
     const userId = req.params.userId;
-    console.log(userId)
 
     try {
         const newTodo = new Todo({ task, status, userId });
@@ -130,7 +129,7 @@ app.post('/todoPost/:userId', async (req, res) => {
 });
 
 // Get user's todo list
-app.get('/todoList/:userId', async (req, res) => {
+app.get('/todoList/:userId',authenticateToken, async (req, res) => {
     const userId = req.params.userId;
 
     try {
@@ -143,7 +142,7 @@ app.get('/todoList/:userId', async (req, res) => {
 });
 
 // Update a todo
-app.put('/updateTodo/:id', async (req, res) => {
+app.put('/updateTodo/:id',authenticateToken, async (req, res) => {
     const id = req.params.id;
     const { task, status } = req.body;
 
