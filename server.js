@@ -35,15 +35,16 @@ const User = mongoose.model('User', UserSchema);
 const Todo = mongoose.model('Todo', TodoSchema);
 
 // CORS setup
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-    })
-);
+app.use(cors({
+    origin: 'http://localhost:3000',
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 
 // JWT Authentication Middleware
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
+/* const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['Authorization'];
+    console.log(authHeader);
     if (!authHeader) {
         return res.status(401).json({ error: 'No token provided' });
     }
@@ -57,8 +58,9 @@ const authenticateToken = (req, res, next) => {
         next();
     });
 };
+*/
 
-// Endpoints
+
 
 // User login
 app.post('/login', async (req, res) => {
@@ -114,7 +116,7 @@ app.get('/userDetails', async (req, res) => {
 });
 
 // Add a new todo
-app.post('/todoPost/:userId',authenticateToken, async (req, res) => {
+app.post('/todoPost/:userId', async (req, res) => {
     const { task, status } = req.body;
     const userId = req.params.userId;
 
@@ -129,7 +131,7 @@ app.post('/todoPost/:userId',authenticateToken, async (req, res) => {
 });
 
 // Get user's todo list
-app.get('/todoList/:userId',authenticateToken, async (req, res) => {
+app.get('/todoList/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     try {
@@ -142,7 +144,7 @@ app.get('/todoList/:userId',authenticateToken, async (req, res) => {
 });
 
 // Update a todo
-app.put('/updateTodo/:id',authenticateToken, async (req, res) => {
+app.put('/updateTodo/:id', async (req, res) => {
     const id = req.params.id;
     const { task, status } = req.body;
 
@@ -156,7 +158,7 @@ app.put('/updateTodo/:id',authenticateToken, async (req, res) => {
 });
 
 // Delete a todo
-app.delete('/deleteTodo/:id', authenticateToken, async (req, res) => {
+app.delete('/deleteTodo/:id', async (req, res) => {
     const id = req.params.id;
 
     try {
