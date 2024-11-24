@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
 const TodoSchema = new mongoose.Schema({
     task: { type: String, required: true },
     status: { type: String, required: true },
-    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' }
+    userId: { type: String, required: true}
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -117,6 +117,7 @@ app.get('/userDetails', async (req, res) => {
 app.post('/todoPost/:userId', async (req, res) => {
     const { task, status } = req.body;
     const userId = req.params.userId;
+    console.log(userId)
 
     try {
         const newTodo = new Todo({ task, status, userId });
