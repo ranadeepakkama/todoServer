@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Database setup
 const MONGO_URI = process.env.MONGO_URI || 4040 ; 
@@ -36,8 +37,7 @@ const Todo = mongoose.model('Todo', TodoSchema);
 
 // CORS setup
 app.use(cors({
-    origin: 'http://localhost:3000',
-    allowedHeaders: ['Content-Type', 'Authorization']
+    origin: 'https://todo-user-6yy6v17mg-ranadeepakkamas-projects.vercel.app',
 }));
 
 
