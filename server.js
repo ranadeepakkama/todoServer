@@ -37,7 +37,7 @@ const Todo = mongoose.model('Todo', TodoSchema);
 
 // CORS setup
 app.use(cors({
-    origin: 'https://todo-user-6yy6v17mg-ranadeepakkamas-projects.vercel.app',
+    origin: 'https://todouser-qemo.onrender.com',
 }));
 
 
