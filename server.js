@@ -9,7 +9,6 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 // Database setup
 const MONGO_URI = process.env.MONGO_URI || 4040 ; 
 mongoose.connect(MONGO_URI)
