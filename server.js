@@ -36,8 +36,9 @@ const Todo = mongoose.model('Todo', TodoSchema);
 
 // CORS setup
 app.use(cors({
-    origin: 'https://http://localhost:3000',
+    origin: 'http://localhost:3000', 
 }));
+
 
 
 // JWT Authentication Middleware
