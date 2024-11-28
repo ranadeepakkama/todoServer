@@ -36,7 +36,7 @@ const Todo = mongoose.model('Todo', TodoSchema);
 
 // CORS setup
 app.use(cors({
-    origin: 'https://todouser-qemo.onrender.com', 
+    origin: 'https://localhost:3000', 
     methods: ['GET', 'POST','PUT','DELETE'],
 }));
 
