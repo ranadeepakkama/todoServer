@@ -159,7 +159,7 @@ app.put('/updateTodo/:id', async (req, res) => {
 });
 
 //update a todo for checkbox 
-app.put('/updateTodo/:id', async (req, res) => {
+app.put('/updateCheckBox/:id', async (req, res) => {
     const id = req.params.id;
     const {status } = req.body;
 
