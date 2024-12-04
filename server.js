@@ -164,7 +164,7 @@ app.put('/updateTodo/:id', async (req, res) => {
     const {status } = req.body;
 
     try {
-        const updatedTodo = await Todo.findByIdAndUpdate(id, { task, status }, { new: true });
+        const updatedTodo = await Todo.findByIdAndUpdate(id, {status }, { new: true });
         res.status(200).json({ message: 'Todo updated successfully', updatedTodo });
     } catch (err) {
         console.error('Error updating todo:', err.message);
