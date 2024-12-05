@@ -161,13 +161,27 @@ app.put('/updateTodo/:id', async (req, res) => {
 //update a todo for checkbox 
 app.put('/updateCheckBox/:id', async (req, res) => {
     const id = req.params.id;
-    const {status } = req.body;
+    const { status } = req.body;
+
+    // Validate status
+    if (status === undefined) {
+        return res.status(400).json({ message: 'Status is required' });
+    }
 
     try {
-        const updatedTodo = await Todo.findByIdAndUpdate(id, {status }, { new: true });
+        const updatedTodo = await Todo.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+        );
+
+        if (!updatedTodo) {
+            return res.status(404).json({ message: 'Todo not found' });
+        }
+
         res.status(200).json({ message: 'Todo updated successfully', updatedTodo });
     } catch (err) {
-        console.error('Error updating todo:', err.message);
+        console.error(`Error updating todo with id ${id}:`, err.message);
         res.status(500).json({ message: 'Failed to update todo' });
     }
 });
